@@ -25,7 +25,7 @@ def get_crypto_price(symbol: str, api_key: str) -> float:
         return 0
 
 def main():
-    st.title("CryptoCalculato Helper")
+    st.title("CryptoCalculator Helper")
     
     crypto_options = {
         "Litecoin": {
@@ -38,7 +38,7 @@ def main():
         },
         "Monero": {
             "symbol": "XMR",
-            "address": "88amiwvnVgC89AFUHAvxTm1628cquTfX3Np1S88Y1H6rKXXBzo58dn68pyDvoW5T3UArt9iouuKYyfPHLcn2vi3A6xHQiBN"
+            "address": "82guQ3jedEnBsSXN6wksAmF5tPDBUBaaNcdqmRK43JdABGQExJ78pFL6MC9yqm2eZfPmHVwJNDTo5KPn5MGHDGtTMifQBhs"
         }
     }
     
