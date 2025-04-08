@@ -67,7 +67,7 @@ def main():
     if amount_param is not None:
         try:
             base_amount_usd = float(amount_param)
-            st.info(f"Using amount from URL: ${base_amount_usd}")
+            st.info(f"Total: ${base_amount_usd}")
         except ValueError:
             st.error(f"Invalid amount parameter: {amount_param}. Using default amount: ${default_amount}")
             base_amount_usd = default_amount
