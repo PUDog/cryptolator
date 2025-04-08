@@ -84,8 +84,8 @@ def main():
         if current_price > 0:
             # Calculation based on provided amount
             base_amount = base_amount_usd / current_price
-            # Add a little 5% protection fee
-            final_amount = base_amount * 1.05
+            # Add a little 2% protection fee
+            final_amount = base_amount * 1.02
             
             st.write("### Total Amount")
             st.code(f"{final_amount:.8f} {selected_symbol}")
