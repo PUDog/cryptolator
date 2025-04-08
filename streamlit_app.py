@@ -27,6 +27,16 @@ def get_crypto_price(symbol: str, api_key: str) -> float:
 def main():
     st.title("CryptoCalculator Helper")
     
+    # Get URL parameters
+    try:
+        # For newer Streamlit versions
+        query_params = st.query_params
+        amount_param = query_params.get("amount", None)
+    except:
+        # For older Streamlit versions
+        query_params = st.experimental_get_query_params()
+        amount_param = query_params.get("amount", [None])[0]
+    
     crypto_options = {
         "Litecoin": {
             "symbol": "LTC",
@@ -50,14 +60,30 @@ def main():
     selected_symbol = crypto_options[selected_crypto_name]["symbol"]
     selected_address = crypto_options[selected_crypto_name]["address"]
     
+    # Default amount
+    default_amount = 5.0
+    
+    # Check if amount is provided in URL
+    if amount_param is not None:
+        try:
+            base_amount_usd = float(amount_param)
+            st.info(f"Using amount from URL: ${base_amount_usd}")
+        except ValueError:
+            st.error(f"Invalid amount parameter: {amount_param}. Using default amount: ${default_amount}")
+            base_amount_usd = default_amount
+    else:
+        # If no URL parameter, provide a number input
+        base_amount_usd = st.number_input("Amount in USD ($)", min_value=1.0, value=default_amount, step=1.0)
+        st.caption("You can also specify the amount via URL parameter, e.g., ?amount=10")
+    
     api_key = st.secrets["coinmarketcap_api_key"]
     
     if st.button("Calculate"):
         current_price = get_crypto_price(selected_symbol, api_key)
         
         if current_price > 0:
-            # $5 calculation based
-            base_amount = 5 / current_price
+            # Calculation based on provided amount
+            base_amount = base_amount_usd / current_price
             # Add a little 5% protection fee
             final_amount = base_amount * 1.05
             
