@@ -38,13 +38,13 @@ def main():
         amount_param = query_params.get("amount", [None])[0]
     
     crypto_options = {
-        "Litecoin": {
-            "symbol": "LTC",
-            "address": "ltc1q2y4xh62xe39c8hsljzavdj0ccwjqmjj736g0t8"
-        },
         "Tron": {
             "symbol": "TRX",
             "address": "TPHK7t5AmBLPaKHxTiygH8e8CrSmpetUjM"
+        },
+        "Litecoin": {
+            "symbol": "LTC",
+            "address": "ltc1q2y4xh62xe39c8hsljzavdj0ccwjqmjj736g0t8"
         },
         "Monero": {
             "symbol": "XMR",
